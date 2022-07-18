@@ -80,26 +80,16 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 1. Run the script "final-pipeline_new.sh" with this arguments :
 
 	1. Input directory
-
 	2. Output directory
-
-	2. Readsets txt file
-
-        4. Library type: "paired"  or "single"
-        
-        5. Sample map: when there are several read groups per sample, the sample map is a txt file mapping samples to readsets
-
-        6. Path to human Mirbase data base index
-        
-        7. Path to human reference genome
-        
-        8. Path to human Mir Annotated gff3 file
-        
-        9. gencode.v39.chr_patch_hapl_scaff.annotation.gtf.gz file
-        
-        10. 3`adapter
-        
-        11. 5`adapter
+	3. Readsets txt file
+	4. Library type: "paired"  or "single"
+	5. Sample map: when there are several read groups per sample, the sample map is a txt file mapping samples to readsets
+	6. Path to human Mirbase data base index
+	7. Path to human reference genome
+	8. Path to human Mir Annotated gff3 file
+	9. gencode.v39.chr_patch_hapl_scaff.annotation.gtf.gz file
+	10. 3`adapter
+	11. 5`adapter
 
 
 	Example:
