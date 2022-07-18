@@ -1,8 +1,8 @@
-## miRNA workflow
+### miRNA workflow
 
 This workflow is an adaptation to run the miRNA pipeline developed by Pratibha Potla for Dr. Amanda Ali (MAR-13-2020):
 
-# How to run this workflow
+## How to run this workflow
 
 # 1) Setting up the environment
 
@@ -27,61 +27,55 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 	deactivate
 
 
-Running final-pipeline_new.sh
+## Running final-pipeline_new.sh
 
 # A) PREPARATION
 
-If you're running the pipeline in your computer or server, follow instructions by 
+# If you're running the pipeline in your computer or server, follow instructions by Potla (2020):
 
-1) Download  both mature and hairpin fasta file from http://www.mirbase.org/ftp.shtml and extract only human (hsa) sequences from each one of them
+	1) Download  both mature and hairpin fasta file from http://www.mirbase.org/ftp.shtml and extract only human (hsa) sequences from each one of them
 
-2) Create bowtie1 index files for both these fasta files, where files with extension .ebwt will be created
+	2) Create bowtie1 index files for both these fasta files, where files with extension .ebwt will be created
 
-3) Download latest human reference genome version GRCh38 from Ensembl or NCBI in FASTA format having chr1, chr2, etc all in one file
+	3) Download latest human reference genome version GRCh38 from Ensembl or NCBI in FASTA format having chr1, chr2, etc all in one file
 
-4) Create bowtie1 index files for reference.fasta file, where files with extension .ebwt will be created
+	4) Create bowtie1 index files for reference.fasta file, where files with extension .ebwt will be created
 
-5) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for convenience in using in scripts
+	5) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for convenience in using in scripts
 
-6) Download and install latest versions of these softwares: bcl2fastq, fastqc, umi_tools, cutadapt, bowtie1, samtools, and bedtools (tagBAM script only)
+	6) Download and install latest versions of these softwares: bcl2fastq, fastqc, umi_tools, cutadapt, bowtie1, samtools, and bedtools (tagBAM script only)
 
-7) Keep the file 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' under the same directory where miRBase index files are present
+	7) Keep the file 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' under the same directory where miRBase index files are present
 
 
 
 # If you're running the pipeline in Compute Canada clusters:
 
-1) Human sequences (hsa) of both mature and hairpin fasta file (from http://www.mirbase.org/ftp.shtml), are in :
-	/lustre03/project/6004655/COMMUN/data/miRNA_databases
+	1) Required databases are ready in the following paths:
+		Human sequences (hsa) of both mature and hairpin fasta file (from http://www.mirbase.org/ftp.shtml): /lustre03/project/6004655/COMMUN/data/miRNA_databases
 		
-2) Bowtie indexes are in:
-	/lustre03/project/6004655/COMMUN/data/miRNA_databases
+		Bowtie indexes: /lustre03/project/6004655/COMMUN/data/miRNA_databases
 
-3) Annotation File path is:
-	"/lustre03/project/6004655/COMMUN/data/miRNA_databases/hsa.gff3"
+		Annotation File path: "/lustre03/project/6004655/COMMUN/data/miRNA_databases/hsa.gff3"
 	
-4) Human reference genome version GRCh38 from Ensembl and bowtie1 index are in:
-	/cvmfs/ref.mugqic/genomes/species/Homo_sapiens.GRCh38/genome/bowtie_index/
+		bowtie1 index of the human reference genome version GRCh38 from Ensembl: /cvmfs/ref.mugqic/genomes/species/Homo_sapiens.GRCh38/genome/bowtie_index/
 	
-5) You must modify the line to activate miRNA_workflow environment according to the path you used, or you can run next preset miRNA_worflow environment:
+	2) You must modify the line "activate miRNA_workflow environment" according to the path you used, or you can run the preset miRNA_worflow environment:
 	/home/p1106294/miRNA_workflow
 
-6) Pipeline script has commands to activate the environment and to load fastqc, bowtie1, samtools and bedtools.
-
-
-7) This file: 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' must be under the same directory where miRBase index files are present.
-
-8)  All bam files must be in the same directory. If there are fastq files, all fastq files must be in the same directory and, step
-  "Convert Bam file to fastq" must be commented (disabled) in the script "final-pipeline_new.sh".
+	3) Pipeline script has commands to activate the environment and to load fastqc, bowtie1, samtools and bedtools.
+	
+	4) The file: 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' must be under the same directory where miRBase index files are present.
+	
+	5) All bam files must be in the same directory. If there are fastq files, all fastq files must be in the same directory and, step
+  "Convert Bam file to fastq" must be commented (to disable this step add "#" and the beginning of each line in the the script "final-pipeline_new.sh").
   
-9) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for convenience in using in scripts
+  	6) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for convenience in using in scripts
 
-10) Create a new directory called "analysis" to store results
+	7) Create a new directory called "analysis" to store results
 
 
 ## B) EXECUTION:
-
-NOTE: Change to run one sample at a time
 
 1. Run the script "final-pipeline_new.sh" in an slurm jub with this arguments :
 
@@ -113,7 +107,7 @@ NOTE: Change to run one sample at a time
 	bash final-pipeline_new.sh ~/miRNA_project/data ~/miRNA_project/analysis sample_list.txt "paired" RGsampleMap.txt ~/miRNA_project/miRNA_databases/mature_index \
 	/cvmfs/ref.mugqic/genomes/species/Homo_sapiens.GRCh38/genome/bowtie_index/ ~/miRNA_project/miRNA_databases/hsa.gff3 "TGGAATTCTCGGGTGCCAAGG"
 
-2. When 'final-pipeline_new.sh' is done running, copy scripts 'get-count_one-sample.sh' and "get-count_job.sh" to analysis directory. 
+2. When 'final-pipeline_new.sh' has finished running, copy scripts 'get-count_one-sample.sh' and "get-count_job.sh" to analysis directory. 
    Copy a "sample_list.txt" file to analysis directory too.
    "get-count_job.sh" script launches an array job to count alinged to reference genome miRNAs in all samples in parallel. Launch this script with:
 
