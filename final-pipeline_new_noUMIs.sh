@@ -12,7 +12,7 @@ args_number=$#
 #echo $args_number
 if [[ $args_number -eq 0 ]]; then
     echo "Usage: "
-    echo "bash final-pipeline_new.sh <input dir> \\"
+    echo "bash final-pipeline_new_noUMIs.sh <input dir> \\"
     echo "< output dir > \\"
     echo "< readset list > \\"
     echo "< single or paired > \\"
