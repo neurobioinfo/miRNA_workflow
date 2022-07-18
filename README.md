@@ -60,15 +60,16 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 	
 		bowtie1 index of the human reference genome version GRCh38 from Ensembl: /cvmfs/ref.mugqic/genomes/species/Homo_sapiens.GRCh38/genome/bowtie_index/
 	
-	2) You must modify the line "activate miRNA_workflow environment" according to the path you used, or you can run the preset miRNA_worflow environment:
+	2) You must modify the line "activate miRNA_workflow environment" in the final-pipeline_new_noUMIs.sh script according to the path you used.
+	The default is to activate the preset miRNA_worflow environment in this location:
 	/home/p1106294/miRNA_workflow
 
-	3) Pipeline script has commands to activate the environment and to load fastqc, bowtie1, samtools and bedtools.
+	3) Pipeline script "final-pipeline_new_noUMIs.sh" activates the environment and loads fastqc, bowtie1, samtools and bedtools.
 	
 	4) The file: 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' must be under the same directory where miRBase index files are present.
 	
 	5) All bam files must be in the same directory. If there are fastq files, all fastq files must be in the same directory and, step
-  "Convert Bam file to fastq" must be commented (to disable this step add "#" and the beginning of each line in the the script "final-pipeline_new.sh").
+  "Convert Bam file to fastq" script chunk must be commented (add "#" and the beginning of each line in the the script "final-pipeline_new.sh").
   
   	6) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for convenience in using in scripts
 
@@ -77,7 +78,7 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 
 ### B) EXECUTION:
 
-1. Run the script "final-pipeline_new.sh" with this arguments :
+1. Run the script "final-pipeline_new_noUMIs.sh" with this arguments :
 
 	1. Input directory
 	2. Output directory
@@ -94,10 +95,10 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 
 	Example:
 
-	bash final-pipeline_new.sh ~/miRNA_project/data ~/miRNA_project/analysis sample_list.txt "paired" RGsampleMap.txt ~/miRNA_project/miRNA_databases/mature_index \
+	bash final-pipeline_new_noUMIs.sh ~/miRNA_project/data ~/miRNA_project/analysis sample_list.txt "paired" RGsampleMap.txt ~/miRNA_project/miRNA_databases/mature_index \
 	/cvmfs/ref.mugqic/genomes/species/Homo_sapiens.GRCh38/genome/bowtie_index/ ~/miRNA_project/miRNA_databases/hsa.gff3 "TGGAATTCTCGGGTGCCAAGG"
 
-2. When 'final-pipeline_new.sh' has finished running, copy scripts 'get-count_one-sample.sh' and "get-count_job.sh" to analysis directory. 
+2. When 'final-pipeline_new_noUMIs.sh' has finished running, copy scripts 'get-count_one-sample.sh' and "get-count_job.sh" to analysis directory. 
    Copy a "sample_list.txt" file to analysis directory too.
    "get-count_job.sh" script launches an array job to count alinged to reference genome miRNAs in all samples in parallel. Launch this script with:
 
