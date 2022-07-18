@@ -1,6 +1,10 @@
-This workflow is an adaptation to run the miRNA pipeline developed by   
+## miRNA workflow
 
-1) Setting up the environment
+This workflow is an adaptation to run the miRNA pipeline developed by Pratibha Potla for Dr. Amanda Ali (MAR-13-2020):
+
+# How to run this workflow
+
+# 1) Setting up the environment
 
 A) If you're running the pipeline in your computer or server, install or load the dependecies:
 	bcl2fastq, gcc/9.3.0, samtools/1.13, bowtie/1.3.0, bedtools/2.29.2, python3.8, cutadapt-3.4
@@ -25,9 +29,9 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 
 Running final-pipeline_new.sh
 
-A) PREPARATION
+# A) PREPARATION
 
-# If you're running the pipeline in your computer or server, follow instructions by 
+If you're running the pipeline in your computer or server, follow instructions by 
 
 1) Download  both mature and hairpin fasta file from http://www.mirbase.org/ftp.shtml and extract only human (hsa) sequences from each one of them
 
@@ -75,7 +79,7 @@ A) PREPARATION
 10) Create a new directory called "analysis" to store results
 
 
-B) EXECUTION:
+## B) EXECUTION:
 
 NOTE: Change to run one sample at a time
 
