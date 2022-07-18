@@ -77,7 +77,7 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 
 ### B) EXECUTION:
 
-1. Run the script "final-pipeline_new.sh" in an slurm jub with this arguments :
+1. Run the script "final-pipeline_new.sh" with this arguments :
 
 	1. Input directory
 
