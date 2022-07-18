@@ -8,6 +8,23 @@
 # echo an error message before exiting
 # trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
+args_number=$#
+#echo $args_number
+if [[ $args_number -eq 0 ]]; then
+    echo "Usage: "
+    echo "bash final-pipeline_new.sh <input dir> \\"
+    echo "< output dir > \\"
+    echo "< readset list > \\"
+    echo "< single or paired > \\"
+    echo "< sample map file > \\"
+    echo "< path to human Mirbase Index > \\"
+    echo "< path to human Reference genome Index > \\"
+    echo "< path to human Mir Annotated gg3 file > \\"
+    echo "< human Mir TagBam Bed file > \\"
+    echo "< adapter 3' adapter 5' >"
+    echo
+    exit 1
+fi
 
 
 echo "Activating miRNA_workflow environment"
