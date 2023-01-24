@@ -16,7 +16,7 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 	virtualenv --no-download miRNA_workflow
       
 	# Activate virtual environment
-	source cutadapt/bin/activate
+	source miRNA_workflow/bin/activate
 	# upgrade pip
 	pip install --no-index --upgrade pip
 	
