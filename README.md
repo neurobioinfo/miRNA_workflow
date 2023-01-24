@@ -11,7 +11,7 @@ A) If you're running the pipeline in your computer or server, install or load th
 
 b) If you're running the pipeline in Compute Canada clusters create a miRNA_workflow environment:
       
-	Module load python3.8
+	module load python/3.8.10
 	module load scipy-stack
 	virtualenv --no-download miRNA_workflow
       
