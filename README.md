@@ -99,7 +99,7 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 	6. Path to human Mirbase data base index
 	7. Path to human reference genome
 	8. Path to human Mir Annotated gff3 file
-	9. gencode.v39.chr_patch_hapl_scaff.annotation.gtf.gz file
+	9. Path to hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed file
 	10. 3`adapter
 	11. 5`adapter
 
