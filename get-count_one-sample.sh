@@ -1,6 +1,8 @@
 #!/bin/sh
 
 j=$1
+
+module load samtools/1.16.1
 OUTPUTDIR="./"
 
 touch $OUTPUTDIR/$j/$j"-counts.txt"
