@@ -11,12 +11,12 @@ A) If you're running the pipeline in your computer or server, install or load th
 
 b) If you're running the pipeline in Compute Canada clusters create a miRNA_workflow environment:
       
-	Module load python3.8
+	module load python/3.8.10
 	module load scipy-stack
 	virtualenv --no-download miRNA_workflow
       
 	# Activate virtual environment
-	source cutadapt/bin/activate
+	source miRNA_workflow/bin/activate
 	# upgrade pip
 	pip install --no-index --upgrade pip
 	
@@ -33,19 +33,25 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 
 #### If you're running the pipeline in your computer or server, follow instructions by Potla (2020):
 
-	1) Download  both mature and hairpin fasta file from http://www.mirbase.org/ftp.shtml and extract only human (hsa) sequences from each one of them
+	1) Download  both mature and hairpin fasta file from http://www.mirbase.org/ftp.shtml and extract
+	   only human (hsa) sequences from each one of them
 
-	2) Create bowtie1 index files for both these fasta files, where files with extension .ebwt will be created
+	2) Create bowtie1 index files for both these fasta files, where files with extension .ebwt will be
+	   created
 
-	3) Download latest human reference genome version GRCh38 from Ensembl or NCBI in FASTA format having chr1, chr2, etc all in one file
+	3) Download latest human reference genome version GRCh38 from Ensembl or NCBI in FASTA format having
+	   chr1, chr2, etc all in one file
 
 	4) Create bowtie1 index files for reference.fasta file, where files with extension .ebwt will be created
 
-	5) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for convenience in using in scripts
+	5) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for 
+	   convenience in using in scripts
 
-	6) Download and install latest versions of these softwares: bcl2fastq, fastqc, umi_tools, cutadapt, bowtie1, samtools, and bedtools (tagBAM script only)
+	6) Download and install latest versions of these softwares: bcl2fastq, fastqc, umi_tools, cutadapt,
+	   bowtie1, samtools, and bedtools (tagBAM script only)
 
-	7) Keep the file 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' under the same directory where miRBase index files are present
+	7) Keep the file 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' under the same directory where
+	   miRBase index files are present
 
 
 
@@ -60,18 +66,23 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 	
 		bowtie1 index of the human reference genome version GRCh38 from Ensembl: /cvmfs/ref.mugqic/genomes/species/Homo_sapiens.GRCh38/genome/bowtie_index/
 	
-	2) You must modify the line "activate miRNA_workflow environment" in the final-pipeline_new_noUMIs.sh script according to the path you used.
-	The default is to activate the preset miRNA_worflow environment in this location:
-	/home/p1106294/miRNA_workflow
+	2) You must modify the line "activate miRNA_workflow environment" in the final-pipeline_new_noUMIs.sh
+	   script according to the path you used.
+	   The default is to activate the preset miRNA_worflow environment in this location:
+	   /home/p1106294/miRNA_workflow
 
-	3) Pipeline script "final-pipeline_new_noUMIs.sh" activates the environment and loads fastqc, bowtie1, samtools and bedtools.
+	3) Pipeline script "final-pipeline_new_noUMIs.sh" activates the environment and loads fastqc, bowtie1,
+	   samtools and bedtools.
 	
-	4) The file: 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' must be under the same directory where miRBase index files are present.
+	4) The file: 'hsa-genome-miRBase22v-onlymiRNAs-convforTagBAM.bed' must be under the same directory
+	   where miRBase index files are present.
 	
-	5) All bam files must be in the same directory. If there are fastq files, all fastq files must be in the same directory and, step
-  "Convert Bam file to fastq" script chunk must be commented (add "#" and the beginning of each line in the the script "final-pipeline_new.sh").
+	5) All bam files must be in the same directory. If there are fastq files, all fastq files must be
+	   in the same directory and, step "Convert Bam file to fastq" script chunk must be commented (add
+	    "#" at the beginning of each line in the the script "final-pipeline_new.sh").
   
-  	6) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for convenience in using in scripts
+  	6) If sample filename is 'Bone1B_S2_R1_001.fastq.gz', then rename it to 'Bone1B.fastq.gz' for
+	   convenience in using in scripts
 
 	7) Create a new directory called "analysis" to store results
 
@@ -88,15 +99,15 @@ b) If you're running the pipeline in Compute Canada clusters create a miRNA_work
 	6. Path to human Mirbase data base index
 	7. Path to human reference genome
 	8. Path to human Mir Annotated gff3 file
-	9. gencode.v39.chr_patch_hapl_scaff.annotation.gtf.gz file
-	10. 3`adapter
-	11. 5`adapter
+	9. 3`adapter
+	10. 5`adapter
 
 
 	Example:
-
+```
 	bash final-pipeline_new_noUMIs.sh ~/miRNA_project/data ~/miRNA_project/analysis sample_list.txt "paired" RGsampleMap.txt ~/miRNA_project/miRNA_databases/mature_index \
 	/cvmfs/ref.mugqic/genomes/species/Homo_sapiens.GRCh38/genome/bowtie_index/ ~/miRNA_project/miRNA_databases/hsa.gff3 "TGGAATTCTCGGGTGCCAAGG"
+```
 
 2. When 'final-pipeline_new_noUMIs.sh' has finished running, copy scripts 'get-count_one-sample.sh' and "get-count_job.sh" to analysis directory. 
    Copy a "sample_list.txt" file to analysis directory too.
